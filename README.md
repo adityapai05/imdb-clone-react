@@ -19,7 +19,7 @@ An IMDb Clone built with React and TailwindCSS that allows users to explore movi
 1. Clone the repository: `git clone https://github.com/adityapai05/imdb-clone-react.git`  
 2. Install dependencies: `npm install`  
 3. Get an API key from TMDb and add it to the fetch calls.  
-4. Run the app: `npm start`  
+4. Run the app: `npm run dev`  
 
 ## 📦 Dependencies  
 - React Router DOM for routing  
