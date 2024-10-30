@@ -20,8 +20,8 @@ const Movie = () => {
 
   return (
     <div className="w-full min-h-screen bg-black flex flex-col items-center">
-      {/* Reduced Banner Height */}
-      <div className="w-full h-[600px] relative overflow-hidden">
+      {/* Banner Section */}
+      <div className="w-full h-[400px] sm:h-[600px] relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
         <img
           className="w-full h-full object-cover opacity-50"
@@ -32,12 +32,12 @@ const Movie = () => {
         />
       </div>
 
-      {/* Main Content Container */}
-      <div className="w-4/5 flex gap-8 relative -mt-32 z-20">
+      {/* Content Section */}
+      <div className="w-11/12 md:w-4/5 flex flex-col lg:flex-row gap-8 relative -mt-24 lg:-mt-32 z-20">
         {/* Poster Image */}
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 mx-auto lg:mx-0">
           <img
-            className="w-[300px] rounded-lg shadow-xl"
+            className="w-[200px] sm:w-[300px] rounded-lg shadow-xl"
             src={`https://image.tmdb.org/t/p/original${
               currentMovieDetail?.poster_path || ""
             }`}
@@ -46,16 +46,16 @@ const Movie = () => {
         </div>
 
         {/* Movie Details */}
-        <div className="text-white flex flex-col gap-3 flex-1 mb-10">
-          <h1 className="font-bold text-4xl">
+        <div className="text-white flex flex-col gap-4 flex-1 mb-10">
+          <h1 className="font-bold text-3xl sm:text-4xl text-center lg:text-left">
             {currentMovieDetail?.original_title || ""}
           </h1>
 
-          <p className="text-gray-300 text-lg italic">
+          <p className="text-gray-300 text-center lg:text-left text-lg italic">
             {currentMovieDetail?.tagline || ""}
           </p>
 
-          <div className="flex items-center gap-2 text-sm">
+          <div className="flex justify-center lg:justify-start items-center gap-2 text-sm">
             <span>{currentMovieDetail?.vote_average || ""}</span>
             <i className="fas fa-star text-yellow-400" />
             <span className="text-gray-400 ml-2">
@@ -63,7 +63,7 @@ const Movie = () => {
             </span>
           </div>
 
-          <div className="text-gray-300">
+          <div className="text-gray-300 text-center lg:text-left">
             <div>
               Runtime:{" "}
               {currentMovieDetail ? `${currentMovieDetail.runtime} mins` : ""}
@@ -73,11 +73,11 @@ const Movie = () => {
                 ? `Release date: ${currentMovieDetail.release_date}`
                 : ""}
             </div>
-            <div className="mt-5">
+            <div className="mt-5 flex flex-wrap justify-center lg:justify-start gap-2">
               {currentMovieDetail?.genres?.map((genre) => (
                 <span
                   key={genre.id}
-                  className="px-2 py-1 border border-white rounded-full mr-2"
+                  className="px-3 py-1 border border-white rounded-full"
                 >
                   {genre.name}
                 </span>
@@ -89,12 +89,16 @@ const Movie = () => {
           <div className="flex flex-col gap-6">
             {/* Synopsis */}
             <div>
-              <div className="text-2xl mb-2 font-semibold">Synopsis</div>
-              <p>{currentMovieDetail?.overview || "No synopsis available."}</p>
+              <div className="text-2xl mb-2 font-semibold text-center lg:text-left">
+                Synopsis
+              </div>
+              <p className="text-center lg:text-left">
+                {currentMovieDetail?.overview || "No synopsis available."}
+              </p>
             </div>
 
             {/* Useful Links */}
-            <div className="flex gap-4 mt-0">
+            <div className="flex justify-center lg:justify-start gap-4 mt-2">
               {currentMovieDetail?.homepage && (
                 <a
                   href={currentMovieDetail.homepage}
@@ -104,7 +108,7 @@ const Movie = () => {
                 >
                   <span className="flex justify-center items-center px-8 py-2 rounded-full cursor-pointer w-[150px] text-black font-bold bg-red-600">
                     Homepage
-                    <i className="fas fa-external-link-alt ml-6"></i>
+                    <i className="fas fa-external-link-alt ml-2"></i>
                   </span>
                 </a>
               )}
@@ -117,7 +121,7 @@ const Movie = () => {
                 >
                   <span className="flex justify-center items-center px-6 py-2 rounded-full cursor-pointer w-[150px] text-black font-bold bg-[#f3ce13]">
                     IMDb
-                    <i className="fas fa-external-link-alt ml-9"></i>
+                    <i className="fas fa-external-link-alt ml-2"></i>
                   </span>
                 </a>
               )}
