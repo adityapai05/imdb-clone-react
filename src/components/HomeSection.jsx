@@ -17,8 +17,8 @@ function HomeSection({ title, movies, viewAllLink, loading = false }) {
       <div className="flex flex-row flex-wrap justify-around gap-5">
         {loading
           ? [...Array(6)].map((_, i) => (
-              <div key={i} className="animate-pulse ">
-                <div className="bg-gray-800 h-[50vh] w-[195px] rounded-lg mx-4"></div>
+              <div key={i} className="animate-pulse w-[195px] sm:w-[275px] lg:w-[275px]">
+                <div className="bg-gray-800 h-[50vh] rounded-lg mx-4"></div>
               </div>
             ))
           : movies.slice(0, 6).map((movieObj) => (

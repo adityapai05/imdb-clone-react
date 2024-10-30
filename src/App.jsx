@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   let [watchlist, setWatchList] = useState([]);
-
+  const [filteredMovies, setFilteredMovies] = useState([]);
   let addToList = (movieObj) => {
     let newWatchList = [...watchlist, movieObj];
     localStorage.setItem("moviesApp", JSON.stringify(newWatchList));
@@ -40,16 +40,23 @@ function App() {
   return (
     <>
       <AppContext.Provider
-        value={{ watchlist, addToList, removeFromList, setWatchList }}
+        value={{ watchlist, addToList, removeFromList, setWatchList, filteredMovies, setFilteredMovies }}
       >
         <BrowserRouter>
-          <Navbar />
-
+          <Navbar setFilteredMovies={setFilteredMovies} />
           <Routes>
-            <Route index element={<Home loading={loading} setLoading={setLoading}/>}/>
+            <Route index element={<Home loading={loading} setLoading={setLoading} />} />
             <Route path="/watchlist" element={<WatchList />} />
-            <Route path="/movie/:id" element={<Movie/>} />
-            <Route path="/movies/:type" element={<Movies loading={loading} setLoading={setLoading}/>} />
+            <Route path="/movie/:id" element={<Movie />} />
+            <Route
+              path="/movies/:type"
+              element={
+                <Movies
+                  filteredMovies={filteredMovies}
+                  setFilteredMovies={setFilteredMovies}
+                />
+              }
+            />
           </Routes>
         </BrowserRouter>
       </AppContext.Provider>
